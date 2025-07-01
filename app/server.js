@@ -5,46 +5,43 @@ const dbName = 'swapi'
 
 const app = express();
 const port = 3000; // You can choose any port number
+// Initializing client and db to prevent code duplication
+const client = await MongoClient.connect(url);
+const db = client.db(dbName);
 
 // GET for Characters
 app.get('/api/characters', async (req, res) => {
   try {
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("characters");
       const characters = await collection.find({}).toArray();
       res.json(characters);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error finding a character");
+      res.status(500).send(`ERROR: Could not fetch characters. ${err}`);
   }
 });
 
 // GET for Planets
 app.get('/api/planets', async (req, res) => {
   try {
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("planets");
       const planets = await collection.find({}).toArray();
       res.json(planets);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error finding a planet");
+      res.status(500).send(`ERROR: Could not fetch planets. ${err}`);
   }
 });
 
 // GET for Films
 app.get('/api/films', async (req, res) => {
   try {
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("films");
       const films = await collection.find({}).toArray();
       res.json(films);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error finding a film");
+      res.status(500).send(`ERROR: Could not fetch films. ${err}`);
   }
 });
 
@@ -52,31 +49,25 @@ app.get('/api/films', async (req, res) => {
 app.get('/api/characters/:id', async (req, res) => {
   try {
       const {id} = req.params
-      console.log(id)
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("characters");
       const characters = await collection.findOne({"id" : +id});
       res.json(characters);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error");
+      res.status(500).send(`ERROR: Could not fetch character with id ${id}. ${err}`);
   }
 });
 
-// GET for Films with an id
+// GET for Films with an id passed in
 app.get('/api/films/:id', async (req, res) => {
   try {
       const {id} = req.params
-      console.log(id)
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("films");
       const films = await collection.findOne({"id" : +id});
       res.json(films);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error");
+      res.status(500).send(`ERROR: Could not fetch film with id ${id}. ${err}`);
   }
 });
 
@@ -84,15 +75,12 @@ app.get('/api/films/:id', async (req, res) => {
 app.get('/api/planets/:id', async (req, res) => {
   try {
       const {id} = req.params
-      console.log(id)
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("films");
       const planets = await collection.findOne({"id" : +id});
       res.json(planets);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error");
+      res.status(500).send(`ERROR: Could not fetch planet with id ${id}. ${err}`);
   }
 });
 
@@ -100,16 +88,13 @@ app.get('/api/planets/:id', async (req, res) => {
 app.get('/api/films/:id/characters', async (req, res) => {
   try {
       const {id} = req.params
-      console.log(id)
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("films_characters");
       const film_characters = await collection.find({"film_id" : +id}).toArray();
       // console.log(planets)
       res.json(film_characters);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error");
+      res.status(500).send(`ERROR: Could not fetch characters in film with id ${id}. ${err}`);
   }
 });
 
@@ -117,16 +102,13 @@ app.get('/api/films/:id/characters', async (req, res) => {
 app.get('/api/films/:id/planets', async (req, res) => {
   try {
       const {id} = req.params
-      console.log(id)
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("films_planets");
       const film_characters = await collection.find({"film_id" : +id}).toArray();
       // console.log(planets)
       res.json(film_characters);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error");
+      res.status(500).send(`ERROR: Could not fetch planets in film with id ${id}. ${err}`);
   }
 });
 
@@ -134,16 +116,13 @@ app.get('/api/films/:id/planets', async (req, res) => {
 app.get('/api/characters/:id/films', async (req, res) => {
   try {
       const {id} = req.params
-      console.log(id)
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("films_characters");
       const film_characters = await collection.find({"character_id" : +id}).toArray();
       // console.log(planets)
       res.json(film_characters);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error");
+      res.status(500).send(`ERROR: Could not fetch films a character has been in with id ${id}. ${err}`);
   }
 });
 
@@ -151,16 +130,13 @@ app.get('/api/characters/:id/films', async (req, res) => {
 app.get('/api/planets/:id/films', async (req, res) => {
   try {
       const {id} = req.params
-      console.log(id)
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("films_planets");
       const film_planets = await collection.find({"planet_id" : +id}).toArray();
       // console.log(planets)
       res.json(film_planets);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error");
+      res.status(500).send(`ERROR: Could not fetch films that a planet appears in with id ${id}. ${err}`);
   }
 });
 
@@ -168,16 +144,13 @@ app.get('/api/planets/:id/films', async (req, res) => {
 app.get('/api/planets/:id/characters', async (req, res) => {
   try {
       const {id} = req.params
-      console.log(id)
-      const client = await MongoClient.connect(url);
-      const db = client.db(dbName);
       const collection = db.collection("characters");
       const planet_characters = await collection.find({"homeworld" : +id}).toArray();
       // console.log(planets)
       res.json(planet_characters);
   } catch (err) {
       console.error("Error:", err);
-      res.status(500).send("Error");
+      res.status(500).send(`ERROR: Could not fetch characters from a planet with id ${id}. ${err}`);
   }
 });
 
