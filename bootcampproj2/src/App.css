@@ -40,3 +40,35 @@
 .read-the-docs {
   color: #888;
 }
+
+/* New styles for character list */
+#charactersList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em; /* Space between character boxes */
+  padding: 1em;
+}
+
+#character-box {
+  flex: 1 1 150px; /* Allows boxes to grow and shrink, with a minimum width */
+  text-align: center;
+  background-color: #f0f0f0; /* Optional: Adds a background color */
+  padding: 0.5em; /* Adds padding inside each box */
+  border-radius: 5px; /* Rounds the corners of each box */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+nav {
+  margin-bottom: 1em;
+}
+
+nav a {
+  margin: 0 1em;
+  text-decoration: none;
+  color: #646cff;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
