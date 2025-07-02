@@ -57,12 +57,8 @@ export default function Characters() {
         )}
       </p>
       <p>
-        <strong>Species:</strong>{' '}
-        {species ? (
-          <Link to={`/species/${species.id}`}>{species.name}</Link>
-        ) : (
-          'Unknown'
-        )}
+        <strong>Species:</strong>{species.name}
+
       </p>
       <p><strong>Birth Year:</strong> {character.birth_year}</p>
 
