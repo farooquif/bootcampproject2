@@ -1,9 +1,11 @@
 import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
+import cors from 'cors';
 const url = 'mongodb://localhost:27017'
 const dbName = 'swapi'
 
 const app = express();
+app.use(cors())
 const port = 3000;
 // Initializing client and db to prevent code duplication
 const client = await MongoClient.connect(url);
