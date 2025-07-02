@@ -1,3 +1,13 @@
+/* General Styles */
+body {
+  background-color: #000; /* Black background for space theme */
+  color: #fff; /* White text for contrast */
+  font-family: 'Arial', sans-serif; /* Use a simple sans-serif font */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,60 +15,32 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Header Styles */
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  color: #61dafb; /* Light blue for Star Wars feel */
+  text-shadow: 0 0 10px #61dafb; /* Glowing effect */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+p {
+  font-size: 1.2em;
+  margin-bottom: 1em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Search Input */
+input#searchString {
+  width: 80%;
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  background-color: #1a1a1a;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Subtle shadow */
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* New styles for character list */
-#charactersList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1em; /* Space between character boxes */
-  padding: 1em;
-}
-
-#character-box {
-  flex: 1 1 150px; /* Allows boxes to grow and shrink, with a minimum width */
-  text-align: center;
-  background-color: #f0f0f0; /* Optional: Adds a background color */
-  padding: 0.5em; /* Adds padding inside each box */
-  border-radius: 5px; /* Rounds the corners of each box */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-}
-
+/* Navigation Styles */
 nav {
   margin-bottom: 1em;
 }
@@ -66,9 +48,65 @@ nav {
 nav a {
   margin: 0 1em;
   text-decoration: none;
-  color: #646cff;
+  color: #61dafb; /* Light blue for links */
+  font-size: 1.2em;
+  transition: color 0.3s;
 }
 
 nav a:hover {
   text-decoration: underline;
+  color: #fff; /* White text on hover */
+}
+
+/* Character List Styles */
+#charactersList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  padding: 1em;
+}
+
+#character-box {
+  flex: 1 1 150px;
+  text-align: center;
+  background-color: #1a1a1a; /* Dark background for character boxes */
+  color: #61dafb; /* Light blue text for character names */
+  padding: 0.5em;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Starry shadow effect */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#character-box:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Enhanced shadow on hover */
+}
+
+/* Footer Styles */
+footer {
+  margin-top: 2em;
+  padding: 1em;
+  background-color: #1a1a1a;
+  color: #61dafb;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  nav a {
+    font-size: 1em;
+  }
+
+  #character-box {
+    flex: 1 1 100px;
+  }
 }
