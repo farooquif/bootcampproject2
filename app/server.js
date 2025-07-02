@@ -4,7 +4,7 @@ const url = 'mongodb://localhost:27017'
 const dbName = 'swapi'
 
 const app = express();
-const port = 3000; // You can choose any port number
+const port = 3000;
 // Initializing client and db to prevent code duplication
 const client = await MongoClient.connect(url);
 const db = client.db(dbName);
@@ -90,7 +90,6 @@ app.get('/api/films/:id/characters', async (req, res) => {
       const {id} = req.params
       const collection = db.collection("films_characters");
       const film_characters = await collection.find({"film_id" : +id}).toArray();
-      // console.log(planets)
       res.json(film_characters);
   } catch (err) {
       console.error("Error:", err);
@@ -104,7 +103,6 @@ app.get('/api/films/:id/planets', async (req, res) => {
       const {id} = req.params
       const collection = db.collection("films_planets");
       const film_characters = await collection.find({"film_id" : +id}).toArray();
-      // console.log(planets)
       res.json(film_characters);
   } catch (err) {
       console.error("Error:", err);
@@ -118,7 +116,6 @@ app.get('/api/characters/:id/films', async (req, res) => {
       const {id} = req.params
       const collection = db.collection("films_characters");
       const film_characters = await collection.find({"character_id" : +id}).toArray();
-      // console.log(planets)
       res.json(film_characters);
   } catch (err) {
       console.error("Error:", err);
@@ -132,7 +129,6 @@ app.get('/api/planets/:id/films', async (req, res) => {
       const {id} = req.params
       const collection = db.collection("films_planets");
       const film_planets = await collection.find({"planet_id" : +id}).toArray();
-      // console.log(planets)
       res.json(film_planets);
   } catch (err) {
       console.error("Error:", err);
@@ -146,7 +142,6 @@ app.get('/api/planets/:id/characters', async (req, res) => {
       const {id} = req.params
       const collection = db.collection("characters");
       const planet_characters = await collection.find({"homeworld" : +id}).toArray();
-      // console.log(planets)
       res.json(planet_characters);
   } catch (err) {
       console.error("Error:", err);
