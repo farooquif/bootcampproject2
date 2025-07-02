@@ -1,6 +1,8 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import React, { useState, useEffect} from "react"
+import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import Characters from "./components/Characters"
 import './App.css'
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
         const response = await fetch('http://localhost:3000/api/characters/')
         const res = await response.json()
         setCharacters(res)
-        console.log(res)
+        // console.log(res)
       } catch (error) {
         console.error('Error fetching characters: ', error)
       }
@@ -21,6 +23,7 @@ function App() {
 
   return (
     <>
+    <Router>
       <div>
         {/* Title */}
         <h1 id="starting-page-title">Star Wars Universe Lookup</h1>
@@ -31,17 +34,19 @@ function App() {
         <input id="searchString" autoComplete="off" placeholder="Luke Skywalker..."/>
         {/* onInput="filterCharacters()" */}
       </div>
-      
-      <section id="charactersList">
-        {
-          characters.map((character) => (
-            <div id="character-box">
-              <a key={character.id} data={character}>{character.name}</a>
-            </div>
-            
-          ))
-        }
-      </section>
+      <Routes>
+          <Route path="/" element={
+            <section id="charactersList">
+              {
+                characters.map((character) => (
+                  <div id="character-box" key={character.id}>
+                    <Link to={`/characters/${character.id}`}>{character.name}</Link>
+                  </div>
+                ))}
+            </section>
+          } />
+      </Routes>
+      </Router>
     </>
   )
 }
