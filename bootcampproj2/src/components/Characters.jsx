@@ -49,7 +49,7 @@ export default function Characters() {
     <div className="character">
       <h2>{character.name}</h2>
       <p>
-        <strong>Planet:</strong>{' '}
+        <strong>Planet: </strong>
         {planet ? (
           <Link to={`/planets/${planet.id}`}>{planet.name}</Link>
         ) : (
@@ -57,15 +57,19 @@ export default function Characters() {
         )}
       </p>
       <p>
-        <strong>Species:</strong>{species.name}
-
+        <strong>Species: </strong>
+        {species ? (
+          <strong>{species.name}</strong>
+        ) : (
+          'Unknown'
+        )}
       </p>
       <p><strong>Birth Year:</strong> {character.birth_year}</p>
 
       <h3>Films</h3>
       {films.map(film => (
         <div key={film.id} className="film">
-          <p><strong>Title:</strong> <Link to={`/films/${film.id}`}>{film.title}</Link></p>
+          <p> <Link to={`/films/${film.id}`}>{film.title}</Link></p>
         </div>
       ))}
     </div>

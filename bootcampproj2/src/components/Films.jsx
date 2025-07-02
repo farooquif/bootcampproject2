@@ -42,23 +42,23 @@ const Films = () => {
   return (
     <div className="film-details">
         <h2>{film.title}</h2>
-        
+
         <h3>Planets</h3>
-        <div className="planets-list">
-            {planets.map(planet => (
-            <div key={planet.id} className="planet-item">
-                <span><Link to={`/planets/${planet.id}`}>{planet.name}</Link></span>
+        <div id="charactersList">
+        {planets.map(planet => (
+            <div id="character-box" key={planet.id}> {/* Changed className to id for consistency */}
+            <span><Link to={`/planets/${planet.id}`}>{planet.name}</Link></span>
             </div>
-            ))}
+        ))}
         </div>
         
         <h3>Characters</h3>
-        <div className="characters-list">
-            {characters.map(character => (
-            <div key={character.id} className="character-item">
-                <span><Link to={`/characters/${character.id}`}>{character.name}</Link></span>
+        <div id="charactersList"> {/* Changed className to id for consistency */}
+        {characters.map(character => (
+            <div id="character-box" key={character.id}> {/* Changed className to id for consistency */}
+            <span><Link to={`/characters/${character.id}`}>{character.name}</Link></span>
             </div>
-            ))}
+        ))}
         </div>
     </div>
   );
