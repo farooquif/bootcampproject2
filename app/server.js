@@ -77,7 +77,7 @@ app.get('/api/films/:id', async (req, res) => {
 app.get('/api/planets/:id', async (req, res) => {
   try {
       const {id} = req.params
-      const collection = db.collection("films");
+      const collection = db.collection("planets");
       const planets = await collection.findOne({"id" : +id});
       res.json(planets);
   } catch (err) {
@@ -153,6 +153,8 @@ app.get('/api/planets/:id/characters', async (req, res) => {
     res.status(500).send(`ERROR: Could not fetch characters from a planet with id ${id}. ${err}`);
   }
 });
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
